@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>untuk Bestii </title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Sacramento&display=swap');
+:root{--cream:#fff7e9;--beige:#f0dfc6;--brown:#98704f;--dark:#654a35;--milk:#d9b590}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--dark);font-family:'Nunito',sans-serif;background:var(--cream);background-image:radial-gradient(#c8a78235 1px,transparent 1px);background-size:19px 19px}
+button{font:inherit;cursor:pointer}
+.music{position:fixed;top:15px;right:15px;z-index:20;border:2px solid #d8b895;background:#fffaf0;color:var(--dark);border-radius:30px;padding:10px 15px;font-weight:800;font-size:12px}
+.page{min-height:100svh;display:flex;justify-content:center;align-items:center;padding:65px 20px;text-align:center;background:linear-gradient(145deg,#f0d9b9,#fff7e9);position:relative;overflow:hidden}
+.intro{max-width:500px;width:100%}.pill{display:inline-block;border:2px solid #dfc09a;border-radius:30px;background:#fffaf0;padding:8px 15px;font-size:11px;letter-spacing:1px;font-weight:800}
+h1{font-family:'Sacramento',cursive;font-weight:normal;font-size:clamp(60px,12vw,90px);color:var(--brown);margin:10px 0}
+.capy{font-size:85px;animation:float 3s ease-in-out infinite}.intro p{font-size:14px;line-height:1.9}
+.deco{position:absolute;font-size:27px;animation:float 3s ease-in-out infinite;pointer-events:none}
+.d1{top:15%;left:10%}.d2{top:25%;right:10%;animation-delay:.8s}.d3{bottom:18%;left:13%;animation-delay:.4s}.d4{bottom:15%;right:12%;animation-delay:1s}
+.btn{background:var(--brown);color:white;border:2px solid #b38c69;border-radius:30px;padding:13px 22px;font-weight:800;font-size:13px;box-shadow:0 5px 0 #d8b995;transition:.25s}
+.btn:hover{transform:translateY(-3px) rotate(-1deg)}
+#letterSection{display:none;padding:65px 18px 50px;text-align:center;animation:appear .8s ease}
+#letterSection.show{display:block}.script{color:var(--brown);font-family:'Sacramento',cursive;font-size:43px;font-weight:normal;margin:0 0 5px}
+.subtitle{font-size:13px;line-height:1.8}
+.envelope{width:min(330px,90vw);height:225px;position:relative;margin:35px auto 20px;cursor:pointer;perspective:900px}
+.env-back{position:absolute;inset:0;background:#bd8e65;border-radius:8px}
+.paper-preview{position:absolute;z-index:2;left:6%;bottom:8px;width:88%;height:175px;padding:12px;background:#fffaf0;border-radius:7px;overflow:hidden;transition:.8s}
+.paper-preview h3{font-family:'Sacramento',cursive;color:#b47e58;font-size:30px;font-weight:normal;margin:0}.paper-preview p{font-size:12px}
+.env-front{position:absolute;z-index:3;inset:0;border-radius:8px;background:#d8aa7f;clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%)}
+.env-flap{position:absolute;z-index:4;inset:0 0 auto;height:130px;background:#e8bf98;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .7s}
+.seal{position:absolute;z-index:5;top:115px;left:50%;transform:translateX(-50%);width:50px;height:50px;border:3px solid #f5dfbd;border-radius:50%;background:#986b4b;color:white;display:grid;place-items:center;font-size:23px;transition:.3s}
+.envelope.open .env-flap{transform:rotateX(180deg);z-index:1}.envelope.open .paper-preview{height:260px;transform:translateY(-70px)}.envelope.open .seal{opacity:0}
+.hint{font-size:12px;animation:blink 1.5s infinite}
+.letter{display:none;max-width:590px;margin:45px auto 0;padding:clamp(20px,5vw,38px);text-align:left;background:#fffaf0;border:2px dashed #d3ad82;border-radius:18px;box-shadow:0 8px 25px #8d69421b;animation:appear .8s ease}
+.letter.show{display:block}.letter h2{font-family:'Sacramento',cursive;text-align:center;font-size:43px;font-weight:normal;color:#b47e58;margin:0 0 20px}
+.letter p{font-size:13px;line-height:2;white-space:pre-line;margin:0 0 18px}
+
+/* Efek paragraf muncul satu per satu */
+.letter.show p{
+  opacity:0;
+  animation:paragraphAppear .7s ease forwards;
+}
+.letter.show p:nth-of-type(1){animation-delay:.25s}
+.letter.show p:nth-of-type(2){animation-delay:1s}
+.letter.show p:nth-of-type(3){animation-delay:1.75s}
+.letter.show p:nth-of-type(4){animation-delay:2.5s}
+.letter.show p:nth-of-type(5){animation-delay:3.25s}
+.letter.show p:nth-of-type(6){animation-delay:4s}
+@keyframes paragraphAppear{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.signature{font-family:'Sacramento',cursive;font-size:30px;text-align:right;color:#b47e58;margin-top:20px}
+.album-trigger{display:none;margin:30px auto 0;animation:appear .8s ease}.album-trigger.show{display:inline-block}
+#albumSection{display:none;padding:55px 15px;border-top:5px dashed #d8ba96;background:#f1e0c8;animation:appear .8s ease}
+#albumSection.show{display:block}.album-heading{text-align:center;font-family:'Sacramento',cursive;font-size:clamp(38px,8vw,55px);font-weight:normal;color:var(--brown);margin:0}
+.album-desc{text-align:center;font-size:13px;line-height:1.9}
+.scrapbook{position:relative;min-height:430px;max-width:500px;margin:25px auto 10px}
+.photo{display:none;position:absolute;width:min(280px,75vw);top:35px;left:50%;padding:10px 10px 16px;background:#fffdf6;box-shadow:0 8px 20px #5b402626;cursor:pointer;transform:translateX(-50%) rotate(-7deg);animation:photoAppear .65s ease both}
+.photo.active{display:block}.photo.active.tilt-right{transform:translateX(-50%) rotate(8deg)}
+.photo img{display:block;width:100%;height:240px;object-fit:cover;background:#ead8bd}
+.caption{font-family:'Sacramento',cursive;text-align:center;font-size:27px;color:#805b40;padding-top:8px}
+.tape{position:absolute;z-index:2;width:65px;height:22px;top:-10px;left:37%;background:#e6c69b;opacity:.8;transform:rotate(-12deg)}
+.sticker{position:absolute;font-size:30px;pointer-events:none}.s1{top:10px;left:7%}.s2{top:100px;right:6%}.s3{bottom:30px;left:8%}.s4{bottom:10px;right:10%}
+.album-controls{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:15px auto 30px}
+.photo-counter{font-size:12px;font-weight:800;color:#98704f;min-width:35px;text-align:center}
+.last-note{max-width:480px;margin:15px auto 0;padding:20px;background:#fff8eb;border:2px dashed #d3ad82;border-radius:15px;text-align:center;font-size:13px;line-height:1.9}
+.viewer{display:none;position:fixed;inset:0;z-index:50;background:#38281fe8;padding:20px;justify-content:center;align-items:center}.viewer.show{display:flex}
+.viewer-box{max-width:450px;width:100%;padding:15px;border-radius:12px;background:#fff8eb;text-align:center;animation:appear .3s ease}
+.viewer-box img{width:100%;max-height:65vh;object-fit:contain}.viewer-box p{font-family:'Sacramento',cursive;font-size:28px;margin:8px}
+footer{padding:35px 15px;text-align:center;font-size:12px;line-height:2}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes photoAppear{from{opacity:0;translate:0 25px}to{opacity:1;translate:0 0}}
+@keyframes blink{50%{opacity:.5}}
+@media(max-width:600px){.scrapbook{min-height:400px}.photo{width:min(250px,72vw)}.photo img{height:215px}.sticker{font-size:23px}}
+</style>
+</head>
+<body>
+
+<audio id="music" loop preload="auto">
+  <source src="lagu.mp3" type="audio/mpeg">
+  Browser kamu tidak mendukung audio HTML.
+</audio>
+<button class="music" id="musicBtn">♫ Play Music</button>
+
+<section class="page" id="home">
+  <span class="deco d1">🦫</span><span class="deco d2">🌼</span>
+  <span class="deco d3">🍪</span><span class="deco d4">♡</span>
+  <div class="intro">
+    <div class="pill">A GIFT FOR YOU ♡</div>
+    <div class="capy">🦫</div>
+    <h1>aloww, bestii!</h1>
+    <p>nana punya sesuatu buat nde...<br>nda seberapa si, masi pemula kesian maaf klo jelek hehehe.</p>
+    <button class="btn" id="startBtn">buka disini♡</button>
+  </div>
+</section>
+
+<section id="letterSection">
+  <h2 class="script">a little letter for you</h2>
+  <p class="subtitle">nana mau sampaikan ini saja, bestii.</p>
+
+  <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Buka amplop">
+    <div class="env-back"></div>
+    <div class="paper-preview">
+      <h3>Bestii ♡</h3>
+      <p>a little letter made with love...</p>
+      <p>For my favorite person ANJAII</p>
+    </div>
+    <div class="env-front"></div>
+    <div class="env-flap"></div>
+    <div class="seal">♡</div>
+  </div>
+
+  <p class="hint" id="envelopeHint">♡ TEKAN INI ♡</p>
+
+  <article class="letter" id="letter">
+    <p>aloww, bestii!</p>
+    <p>i wanna say thank u for everything.
+
+makasih buat setiap cerita-ceritanya,
+obrolan kecil yang ternyata berarti sekali buat nana,
+dan momen-momen sederhana yang pelan-pelan jadi kenangan paling berharga buat nana.
+
+Mungkin nana nda selalu tahu bagaimana caranya menunjukkan ke nde betapa berharganya kehadiran nde buat nana.
+Tapi nana berharap nde tahu kalau nana benar-benar menghargai nde,
+benar-benar sayang sama nde.</p>
+    <p>nana nda berharap pertemanan kita harus selalu sempurna.
+nana cuma berharap, di tengah kesibukan dan perubahan hidup kita nanti, kita tetap bisa jadi tempat pulang satu sama lain.
+tempat buat cerita, ketawa, mengeluh, atau sekadar duduk diam tanpa harus menjelaskan apa-apa.
+
+Walaupun nana sadar, kadang justru nana yang bikin nde capek, bikin nde sedih,
+atau bikin nde kecewa, hehehe.
+Tapi nana benar-benar mengusahakan supaya nda mengulangi hal-hal yang bisa bikin nde merasa begitu lagi.
+Nana masih belajar ji, masih berusaha ji buat jadi lebih baik.
+Walaupun kadang penyakitnya muncul lagi, bukan berarti nana nda mau berubah, bestii.
+Nana tetap berusaha, pelan-pelan, supaya bisa jadi orang yang lebih baik buat nde.
+
+kalau suatu hari nanti kita jadi lebih sibuk,
+kalau kita nda bisa ketemu sesering sekarang,
+nana harap nde nda lupa kalau pernah ada seseorang yang bersyukur sekali bisa kenal nde.
+
+terima kasih karena sudah jadi bagian dari cerita nana.
+terima kasih sudah hadir, bahkan lewat hal-hal kecil yang mungkin nde sendiri nda sadar kalau itu berarti buat nana.
+
+semoga hidup selalu baik sama nde.
+semoga apa pun yang sedang nde usahakan bisa pelan-pelan tercapai.
+dan semoga, di antara banyaknya orang yang akan nde temui nanti, nde tetap ingat kalau nde punya tempat di hati nana.</p>
+    <p>u deserve the same kindness that u always give to others.
+
+Thank u for being u.
+I'm rooting for u, always! ♡</p>
+    <p>Jangan lupa bahagia, bestiii. Makan yang teratur, istirahat yang cukup,
+dan jangan terlalu keras sama diri sendiri, nah.
+
+Kalau dunia lagi nda baik-baik saja sama nde, semoga nde selalu ingat kalau ada nana yang ikut mendoakan hal-hal baik buat nde.
+Nana mungkin nda selalu bisa bantu banyak, nda selalu tahu harus bilang apa,
+tapi nana akan selalu berharap yang terbaik buat nde.
+
+Sayang besti banyaak banyaak melebihi dia. Jaga diri baik-baik besti pliss demi akuhh.</p>
+    <div class="signature">maaf lebay heheeh ♡</div>
+  </article>
+
+  <button class="btn album-trigger" id="albumBtn">📸 foto-foto ajaji ♡</button>
+</section>
+
+<section id="albumSection">
+  <h2 class="album-heading">Our Little Memories</h2>
+  <p class="album-desc">potongan cerita kecil yang ingin nana simpan selamanya ♡<br>Klik foto untuk melihatnya lebih dekat.</p>
+
+  <div class="scrapbook">
+    <span class="sticker s1">🦫</span>
+    <span class="sticker s2">♡</span>
+    <span class="sticker s3">🍪</span>
+    <span class="sticker s4">🌼</span>
+
+    <div class="photo" data-src="foto1.jpg" data-caption="our little moments ♡" role="button" tabindex="0">
+      <span class="tape"></span><img src="foto1.jpg" alt="Kenangan pertama"><div class="caption">ini lagi isben with nde ♡</div>
+    </div>
+    <div class="photo" data-src="foto2.jpg" data-caption="laughing with you" role="button" tabindex="0">
+      <span class="tape"></span><img src="foto2.jpg" alt="Kenangan kedua"><div class="caption">lagi menunggu ke birthday diraa</div>
+    </div>
+    <div class="photo" data-src="foto3.jpg" data-caption="my favorite people" role="button" tabindex="0">
+      <span class="tape"></span><img src="foto3.jpg" alt="Kenangan ketiga"><div class="caption">maaf ija kepotong</div>
+    </div>
+    <div class="photo" data-src="foto4.jpg" data-caption="a day to remember ♡" role="button" tabindex="0">
+      <span class="tape"></span><img src="foto4.jpg" alt="Kenangan keempat"><div class="caption">nde suka foto ini toh?</div>
+    </div>
+    <div class="photo" data-src="foto5.jpg" data-caption="just us being us" role="button" tabindex="0">
+      <span class="tape"></span><img src="foto5.jpg" alt="Kenangan kelima"><div class="caption">nde bersama capybaraa</div>
+    </div>
+  </div>
+
+  <div class="album-controls">
+    <button class="btn" id="prevPhoto">← Sebelumnya</button>
+    <span class="photo-counter" id="photoCounter">1 / 5</span>
+    <button class="btn" id="nextPhoto">selanjutnya →</button>
+  </div>
+
+  <div class="last-note">🦫 🌼 🦫<br>Ada banyak cerita yang mungkin nanti kita lupa, tapi semoga perasaan bahagia saat menjalaninya tetap tinggal di hati kita. MAAF LEBAI BESTII♡</div>
+</section>
+
+<footer>🧸 Made with love, especially for my bestii ♡</footer>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Foto kenangan">
+  <div class="viewer-box">
+    <img id="viewerImg" src="" alt="Foto kenangan">
+    <p id="viewerCaption"></p>
+    <button class="btn" id="closeViewer">Tutup ♡</button>
+  </div>
+</div>
+
+<script>
+const music = document.getElementById('music');
+const musicBtn = document.getElementById('musicBtn');
+const startBtn = document.getElementById('startBtn');
+const letterSection = document.getElementById('letterSection');
+const envelope = document.getElementById('envelope');
+const envelopeHint = document.getElementById('envelopeHint');
+const letter = document.getElementById('letter');
+const albumBtn = document.getElementById('albumBtn');
+const albumSection = document.getElementById('albumSection');
+
+let envelopeOpened = false;
+let albumOpened = false;
+
+async function playMusic() {
+  try {
+    await music.play();
+  } catch (error) {
+    console.log('Musik tidak dapat diputar. Periksa file lagu.mp3.', error);
+  }
+}
+
+musicBtn.addEventListener('click', async () => {
+  if (music.paused) await playMusic();
+  else music.pause();
+});
+
+music.addEventListener('play', () => musicBtn.textContent = '♫ Pause Music');
+music.addEventListener('pause', () => musicBtn.textContent = '♫ Play Music');
+
+startBtn.addEventListener('click', async () => {
+  await playMusic();
+  letterSection.classList.add('show');
+  letterSection.scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+function toggleEnvelope() {
+  envelopeOpened = !envelopeOpened;
+  envelope.classList.toggle('open', envelopeOpened);
+
+  if (envelopeOpened) {
+    envelopeHint.textContent = '♡ Surat kecil untuk bestii ♡';
+
+    setTimeout(() => {
+      if (!envelopeOpened) return;
+      letter.classList.add('show');
+      setTimeout(() => albumBtn.classList.add('show'), 400);
+    }, 550);
+  } else {
+    letter.classList.remove('show');
+    albumBtn.classList.remove('show');
+    albumSection.classList.remove('show');
+    albumOpened = false;
+    albumBtn.textContent = '📸 Lihat kenangan kita ♡';
+    envelopeHint.textContent = '♡ Klik amplopnya untuk membuka ♡';
+  }
+}
+
+envelope.addEventListener('click', toggleEnvelope);
+
+envelope.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    toggleEnvelope();
+  }
+});
+
+const photos = [...document.querySelectorAll('.photo')];
+const prevPhoto = document.getElementById('prevPhoto');
+const nextPhoto = document.getElementById('nextPhoto');
+const photoCounter = document.getElementById('photoCounter');
+let currentPhoto = 0;
+
+function showPhotoAt(index) {
+  currentPhoto = (index + photos.length) % photos.length;
+
+  photos.forEach((photo, i) => {
+    photo.classList.remove('active', 'tilt-right');
+
+    if (i === currentPhoto) {
+      photo.classList.add('active');
+      if (i % 2 === 1) photo.classList.add('tilt-right');
+    }
+  });
+
+  photoCounter.textContent = `${currentPhoto + 1} / ${photos.length}`;
+  prevPhoto.style.display = currentPhoto === 0 ? 'none' : 'inline-block';
+  nextPhoto.textContent = currentPhoto === photos.length - 1
+    ? '♡ Selesai'
+    : 'Foto selanjutnya →';
+}
+
+albumBtn.addEventListener('click', () => {
+  albumOpened = !albumOpened;
+  albumSection.classList.toggle('show', albumOpened);
+
+  albumBtn.textContent = albumOpened
+    ? '♡ Tutup album kenangan'
+    : '📸 Lihat kenangan kita ♡';
+
+  if (albumOpened) {
+    showPhotoAt(0);
+    setTimeout(() => albumSection.scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    }), 100);
+  }
+});
+
+prevPhoto.addEventListener('click', () => showPhotoAt(currentPhoto - 1));
+
+nextPhoto.addEventListener('click', () => {
+  if (currentPhoto === photos.length - 1) {
+    albumSection.classList.remove('show');
+    albumOpened = false;
+    albumBtn.textContent = '📸 Lihat kenangan kita ♡';
+    letterSection.scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
+
+  showPhotoAt(currentPhoto + 1);
+});
+
+const viewer = document.getElementById('viewer');
+const viewerImg = document.getElementById('viewerImg');
+const viewerCaption = document.getElementById('viewerCaption');
+
+photos.forEach(photo => {
+  function openPhoto() {
+    viewerImg.src = photo.dataset.src;
+    viewerCaption.textContent = photo.dataset.caption;
+    viewer.classList.add('show');
+  }
+
+  photo.addEventListener('click', openPhoto);
+
+  photo.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openPhoto();
+    }
+  });
+});
+
+function closeViewer() {
+  viewer.classList.remove('show');
+  viewerImg.src = '';
+}
+
+document.getElementById('closeViewer').addEventListener('click', closeViewer);
+
+viewer.addEventListener('click', e => {
+  if (e.target === viewer) closeViewer();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeViewer();
+});
+
+showPhotoAt(0);
+</script>
+</body>
+</html>
